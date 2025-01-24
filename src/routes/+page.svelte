@@ -1,11 +1,16 @@
 <script>
     import Canvas from '$lib/Canvas.svelte';
-	import PenOptions from '$lib/PenOptions.svelte';
+	import ColorOptions from '$lib/ColorOptions.svelte';
+    import BrushOptions from '$lib/BrushOptions.svelte';
+    import { brushes } from '$lib/brushes';
 
     let color = $state("#ffffff");
+    let brush = $state(brushes["basic"]);
+
 </script>
 
 <div class="fixed inset-0">
-    <Canvas {color}/>
-    <PenOptions bind:value={color}></PenOptions>
+    <Canvas {color} {brush}/>
+    <ColorOptions bind:value={color}></ColorOptions>
+    <BrushOptions bind:value={brush}></BrushOptions>
 </div>

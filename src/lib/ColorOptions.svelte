@@ -25,11 +25,9 @@
 			presetColors.push(tailwindColor(presetColorNames[i]));
 		}
 	});
-
-	$inspect(value);
 </script>
 
-<div class="absolute top-0 left-0 p-2">
+<div class="absolute top-2 left-2">
 	<button
 		class="group flex h-12 w-12 items-center justify-center rounded-lg border border-slate-600 bg-slate-800 transition-all duration-200 hover:border-slate-500 hover:bg-slate-700"
 		onclick={toggleOpen}
@@ -45,7 +43,7 @@
 
 	{#if isOpen}
 		<div
-			class="absolute top-16 left-0 w-64 rounded-lg border border-slate-600 bg-slate-800 p-4 shadow-xl"
+			class="relative top-2 left-0 w-64 rounded-lg border border-slate-600 bg-slate-800 p-4 shadow-xl"
 			transition:fade={{ duration: 150 }}
 		>
 			<div class="flex flex-col gap-4">

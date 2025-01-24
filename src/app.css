@@ -19,5 +19,5 @@
 }
 
 @theme {
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "Inter", ui-sans-serif, sans-serif;
 }

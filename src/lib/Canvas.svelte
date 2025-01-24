@@ -3,12 +3,9 @@
 	import { getStroke } from 'perfect-freehand';
 	import { getSvgPathFromStroke } from './utils';
 
-	import { pens } from './pens';
+	let { color, brush } = $props();
 
-	let { color } = $props();
-
-	let pen = $state(pens['basic']);
-	let penOptions = $derived(pen.options);
+	let brushOptions = $derived(brush.options);
 
 	let pathIndex = 0;
 	let inputPaths = $state([]);
@@ -16,7 +13,7 @@
 		let strokeList = [];
 		for (let i = 0; i < inputPaths.length; i++) {
 			// Use the stored pen options for each path
-			strokeList.push(getStroke(inputPaths[i].points, inputPaths[i].penOptions));
+			strokeList.push(getStroke(inputPaths[i].points, inputPaths[i].brushOptions));
 		}
 		return strokeList;
 	});
@@ -47,7 +44,7 @@
 		inputPaths[pathIndex] = {
 			points: [],
 			color: color,
-			penOptions: { ...pen.options } // Create a copy of the current pen options
+			brushOptions: { ...brushOptions } // Create a copy of the current pen options
 		};
 		isMouseDown = true;
 	}
@@ -55,28 +52,7 @@
 	function mouseUp(event) {
 		isMouseDown = false;
 	}
-
-	function keyDown(event) {
-		if (event.key === 'a' || event.key === 'd') {
-			let penKeys = Object.keys(pens);
-			// Get the current pen name from the proxy object
-			let currentName = pen.name;
-			// Find the index by matching the name
-			let currentIndex = penKeys.findIndex((key) => pens[key].name === currentName);
-
-			let newIndex;
-			if (event.key === 'a') {
-				newIndex = currentIndex <= 0 ? penKeys.length - 1 : currentIndex - 1;
-			} else {
-				newIndex = currentIndex >= penKeys.length - 1 ? 0 : currentIndex + 1;
-			}
-
-			pen = pens[penKeys[newIndex]];
-		}
-	}
 </script>
-
-<svelte:document onkeydown={keyDown} />
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <svg
