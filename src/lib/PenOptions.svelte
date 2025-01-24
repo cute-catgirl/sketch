@@ -55,7 +55,7 @@
 					<input
 						type="color"
 						id="color-select"
-						class="absolute top-[-50%] left-[-50%] h-[200%] w-[200%] cursor-pointer"
+						class="absolute h-[200%] w-[200%] cursor-pointer"
 						bind:value
 					/>
 					<div
